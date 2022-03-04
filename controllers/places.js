@@ -19,6 +19,11 @@ router.get('/', (req, res) => {
       }]
     res.render('places/index',{places})
   })
+//   post route
+  router.post('/', (req, res) => {
+    console.log(req.body)
+    res.send('POST /places')
+  })
 // New Route
 router.get('/new', (req,res)=>{
     res.render('places/new')

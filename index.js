@@ -5,6 +5,7 @@ const PORT = process.env.PORT
 // setting React Engine
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
+app.use(express.urlencoded({ extended: true }))
 // static Routes
 app.use(express.static('public'))
 // importing controllers
