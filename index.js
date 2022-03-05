@@ -1,5 +1,7 @@
+// Modules and Globals
 require('dotenv').config()
 const express = require('express')
+const methodOverride = require('method-override')
 const app = express()
 const PORT = process.env.PORT
 // setting React Engine
@@ -10,6 +12,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 // importing controllers
 app.use('/places', require('./controllers/places'))
+app.use(methodOverRide('_method'))
+app.use(express.json() )
 // home
 app.get('/', (req, res)=>{
     res.render("Home")
