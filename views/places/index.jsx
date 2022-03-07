@@ -4,18 +4,23 @@ const Def = require('../default')
 function index(data) {
     let placesFormatted = data.places.map((place) => {
         return (
-            <div className="col-sm-6">
-                <a href={`/places/${index}`}>
-                    <h2>{place.name}</h2>
-                </a>
-                <p className="text-center">
-                    {place.cuisines}
-                </p>
-                <img src={place.pic} alt={place.name} />
-                <p className="text-center">
-                    Located in {place.city}, {place.state}
-                </p>
+            <div className="row">
+                <div className="col-sm-6 col-md-4 col-lg-3">
+                    <h2>
+                        <a href={`/places/${place.id}`}>
+                            {place.name}
+                        </a>
+                    </h2>
+                    <p className="text-center">
+                        {place.cuisines}
+                    </p>
+                    <img src={place.pic} alt={place.name} />
+                    <p className="text-center">
+                        Located in {place.city}, {place.state}
+                    </p>
+                </div>
             </div>
+
         )
     })
     return (
@@ -32,3 +37,10 @@ function index(data) {
 }
 
 module.exports = index
+
+//     < div className = "row" >
+//   <div className="col-sm-6 col-md-4 col-lg-3">BOX</div>
+//   <div className="col-sm-6 col-md-4 col-lg-3">BOX</div>
+//   <div className="col-sm-6 col-md-4 col-lg-3">BOX</div>
+//   <div className="col-sm-6 col-md-4 col-lg-3">BOX</div>
+// </div >
