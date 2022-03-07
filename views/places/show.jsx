@@ -2,6 +2,25 @@ const React = require('react')
 const Def = require('../default')
 
 function show(data) {
+    let comments = (
+        <h3 className="inactive">
+            No comments yet!
+        </h3>
+    )
+    if (data.place.comments.length) {
+        comments = data.place.comments.map(c => {
+            return (
+                <div className="border">
+                    <h2 className="rant">{c.rant ? 'Rant! 😡' : 'Rave! 😻'}</h2>
+                    <h4>{c.content}</h4>
+                    <h3>
+                        <stong>- {c.author}</stong>
+                    </h3>
+                    <h4>Rating: {c.stars}</h4>
+                </div>
+            )
+        })
+    }
     return (
         <Def>
             <main>
@@ -24,7 +43,7 @@ function show(data) {
                         <div className="d-flex justify-content-center">
 
                             <a href={`/places/${data.id}/edit`} className="btn btn-warning mx-4">
-                                Edit 
+                                Edit
                             </a>
                             <form method="POST" action={`/places/${data.id}?_method=DELETE`}>
                                 <button type="submit" className="btn btn-danger btn-md">
@@ -36,11 +55,88 @@ function show(data) {
                         </div>
                     </div>
                 </div>
-                <h2>Comments</h2>
-                <h5>No comments yet!</h5>
+                <div className="row mt-5">
+                    <div className="col-sm-12">
+                        <h2>
+                            Comments <i className="bi bi-chat-left-dots"></i>
+                        </h2>
+                    </div>
+                    {comments}
+                </div>
+                <h2>Leave a Rant or Rave!</h2>
+                <form method="POST" action={`/places/${data.place.id}?_method=POST`}>
+                    <div className="container">
+                        <div className="row justify-content-start">
+                            <label htmlFor="">Content</label>
+                            <input
+                                name="content"
+                                type="text"
+                                className="col-12"
+                                maxLength="45"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="container">
+                        <div className="row  mt-5">
+                            <div className="col-5 ">
+                                <label htmlFor="">Author</label> <br />
+                                <input name="author" type="text" className="col-12" />
+                            </div>
+
+                            <div className="col-5">
+                                <label htmlFor="customRange2" className="form-label ">
+                                    Star Rating
+                                </label>
+                                <input
+                                    name="stars"
+                                    type="range"
+                                    className="form-range col-8 col-md-6"
+                                    min="0"
+                                    max="5"
+                                    id="customRange2"
+                                ></input>
+                            </div>
+
+                            <div className="col mt-1">
+                                <label htmlFor="">Rant?</label> <br />
+                                <input
+                                    name="rant"
+                                    type="checkbox"
+                                    className="
+               form-check-input"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <button className="m-5 btn btn-primary btn-lg"> Add Comment</button>
+                </form>
+
             </main>
         </Def>
     )
 }
 
 module.exports = show
+
+
+
+
+
+
+
+
+
+
+{/* <h2>Comments</h2>
+                {comments}
+                <form action="/places" method="POST">
+                    <div className='from-group'>
+                        <label htmlFor="name">Author's Name</label>
+                        <input type="text"
+                        className='form-control'
+                        id="name" 
+                        name="name"/>
+                    </div>
+                </form> */}
+
