@@ -17,8 +17,12 @@ function show(data) {
 
                         <h2>Rating</h2>
                         <h5>Not Rated</h5>
+                        <h2>Description</h2>
+                        <h3>{data.place.showEstablished()}</h3>
+                        <h4>serving{data.place.cuisine}</h4>
 
                         <div className="d-flex justify-content-center">
+
                             <a href={`/places/${data.id}/edit`} className="btn btn-warning mx-4">
                                 Edit 
                             </a>
