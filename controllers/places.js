@@ -60,6 +60,8 @@ router.get('/:id', (req, res) => {
       res.render('error404')
   })
 })
+
+// comment
 router.post('/:id/comment', (req, res) => {
   console.log(req.body)
   db.Place.findById(req.params.id)
